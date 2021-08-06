@@ -2,11 +2,11 @@ import PyPDF2
 
 # # pdf file object
 
-pdfFileObj = open('test.pdf','rb')
+# pdfFileObj = open('test.pdf','rb')
 
 # # pdf reader object
 
-pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+pdfReader = PyPDF2.PdfFileReader(r'C:\Users\Flavio\Documents\SMK Python Projects\PDF info extractor\test.pdf')
 
 # # number of pages in pdf
 
@@ -21,5 +21,6 @@ pageObj = pdfReader.getPage(0)
 infoPdf = pageObj.extractText()
 line = infoPdf.split('\n')
 
-for row in line:
-    print(row)
+print(line.index(' '))
+# for row in line:
+#     print(row)
