@@ -31,5 +31,5 @@ def pdfReader_(path):
                     a.append(item)
         except:
             pass
-
+        
     return a
