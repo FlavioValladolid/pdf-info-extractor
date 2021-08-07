@@ -1,31 +1,35 @@
 import PyPDF2
+from PyPDF2.utils import isInt
 
-# # pdf file object
+def pdfReader_(path):
+    pdfReader = PyPDF2.PdfFileReader(path)
+   
+    # # number of pages in pdf
 
-# pdfFileObj = open('test.pdf','rb')
+    # print(pdfReader.numPages)
 
-# # pdf reader object
+    # # a page object
 
-pdfReader = PyPDF2.PdfFileReader(r'C:\Users\flavi\Documents\SMK Projects\pdf-info-extractor\test.pdf')
+    pageObj = pdfReader.getPage(0)
 
-# # number of pages in pdf
+    # # extracting text from page
 
-# print(pdfReader.numPages)
+    infoPdf = pageObj.extractText()
+    line = infoPdf.split('\n')
 
-# # a page object
+    a = []
+    for row in line:
+        try:
+            if 'HTS#' in row:
+                row = row.split(' ')
+                for item in row:
+                    a.append(int(item))
+            if 'colors' in row:
+                row = row.strip()
+                row = row.split('  ')
+                for item in row:
+                    a.append(item)
+        except:
+            pass
 
-pageObj = pdfReader.getPage(0)
-
-# # extracting text from page
-
-infoPdf = pageObj.extractText()
-line = infoPdf.split('\n')
-
-for row in line:
-    if 'colors' in row:
-        a = row
-
-# print(a)
-# print(line.index(' '))
-# for row in line:
-#     print(row)
+    return a
