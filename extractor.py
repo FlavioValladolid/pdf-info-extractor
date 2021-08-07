@@ -6,7 +6,7 @@ import PyPDF2
 
 # # pdf reader object
 
-pdfReader = PyPDF2.PdfFileReader(r'C:\Users\Flavio\Documents\SMK Python Projects\PDF info extractor\test.pdf')
+pdfReader = PyPDF2.PdfFileReader(r'C:\Users\flavi\Documents\SMK Projects\pdf-info-extractor\test.pdf')
 
 # # number of pages in pdf
 
@@ -21,6 +21,11 @@ pageObj = pdfReader.getPage(0)
 infoPdf = pageObj.extractText()
 line = infoPdf.split('\n')
 
-print(line.index(' '))
+for row in line:
+    if 'colors' in row:
+        a = row
+
+# print(a)
+# print(line.index(' '))
 # for row in line:
 #     print(row)
